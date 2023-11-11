@@ -1,4 +1,4 @@
-package com.pi.startup_team;
+package ru.students.StartupTeam;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
