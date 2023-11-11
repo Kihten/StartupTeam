@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница проекта</title>
+</head>
+<body>
+
+<p th:text="${project.getProjectName()}">VALUE</p>
+
+<br/>
+
+<p th:text="${project.getProjectInfo()}">VALUE</p>
+
+<br/>
+
+<p th:text="${'Проект был создан: ' + project.getCreatedAt()}">VALUE</p>
+
+<form th:method="GET" th:action="@{/projects/{id}/edit(id=${project.getId()})}">
+    <input type="submit" value="Редактировать"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/projects/{id}(id=${project.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
+
+</body>
+</html>

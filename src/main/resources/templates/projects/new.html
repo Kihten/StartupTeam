@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание проекта</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/projects}" th:object="${project}">
+    <label for="projectName">Введите название проекта</label>
+    <input type="text" th:field="*{projectName}" id="projectName"/>
+    <div style="color: red" th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}">Project name Error</div>
+    <br/>
+    <label for="projectInfo">Введите информацию о проекте</label>
+    <input type="text" th:field="*{projectInfo}" id="projectInfo"/>
+    <div style="color: red" th:if="${#fields.hasErrors('projectInfo')}" th:errors="*{projectInfo}">Project info Error</div>
+    <br/>
+    <input type="submit" value="Создать проект" />
+</form>
+
+</body>
+</html>
