@@ -1,4 +1,4 @@
-package ru.students.StartupTeam;
+package ru.students.StartupTeam.UI;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

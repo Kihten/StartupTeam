@@ -1,4 +1,4 @@
-package ru.students.StartupTeam.Pages;
+package ru.students.StartupTeam.UI.Pages;
 
 
 /**
