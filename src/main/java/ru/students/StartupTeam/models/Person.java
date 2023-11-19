@@ -1,41 +1,60 @@
 package ru.students.StartupTeam.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import ru.students.StartupTeam.models.project.Project;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Person")
 public class Person {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "first_name")
     @Size(min = 2, max = 50, message = "Имя должно быть в пределах от 2 до 50 символов")
     @NotBlank(message = "Имя должно быть заполнено")
     @NotEmpty(message = "Имя должно быть заполнено")
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "surname")
     @Size(min = 2, max = 50, message = "Фамилия должна быть в пределах от 2 до 50 символов")
     @NotBlank(message = "Фамилия должно быть заполнено")
     @NotEmpty(message = "Фамилия должно быть заполнено")
-    private String surName;
+    @Column(name = "surname")
+    private String surname;
+    @Email
+    @NotEmpty(message = "Электронная поста должна быть заполнена")
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password")
+    @NotEmpty(message = "Пароль должен быть заполнен")
+    private String password;
     @Column(name = "person_info")
     private String personInfo;
+    @Column(name = "role")
+    private String role;
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @OneToMany(mappedBy = "author")
+    private List<Project> projects;
+    @ManyToMany
+    @JoinTable(
+            name = "Person_Skill",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    private List<Skill> skills;
 
     public Person() {
     }
 
-    public Person(String firstName, String surName, Date createdAt) {
+    public Person(String firstName, String surName, LocalDateTime createdAt) {
         this.firstName = firstName;
-        this.surName = surName;
+        this.surname = surName;
         this.createdAt = createdAt;
     }
 
@@ -55,19 +74,19 @@ public class Person {
         this.firstName = firstName;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -79,13 +98,51 @@ public class Person {
         this.personInfo = personInfo;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", surName='" + surName + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 }
