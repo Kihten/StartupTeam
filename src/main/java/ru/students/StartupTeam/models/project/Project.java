@@ -1,10 +1,12 @@
-package ru.students.StartupTeam.models;
+package ru.students.StartupTeam.models.project;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import ru.students.StartupTeam.models.Person;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -15,21 +17,27 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "project_name")
+    @Column(name = "name")
     @Size(min = 2, max = 100, message = "Имя проекта должно быть в пределах от 2 до 100 символов")
     @NotNull(message = "Имя проекта должно быть заполнено")
     @NotBlank(message = "Имя проекта должно быть заполнено")
-    private String projectName;
+    private String name;
     @Column(name = "project_info")
     private String projectInfo;
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Person author;
+    // TODO: add skills to project
 
     public Project() {
     }
 
     public Project(String projectName, String projectInfo) {
-        this.projectName = projectName;
+        this.name = projectName;
         this.projectInfo = projectInfo;
     }
 
@@ -41,12 +49,12 @@ public class Project {
         this.id = id;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getName() {
+        return name;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getProjectInfo() {
@@ -57,19 +65,27 @@ public class Project {
         this.projectInfo = projectInfo;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "projectName='" + projectName + '\'' +
-                ", projectInfo='" + projectInfo + '\'' +
-                '}';
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Person getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Person author) {
+        this.author = author;
     }
 }
