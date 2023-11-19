@@ -6,11 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.students.StartupTeam.models.Project;
+import ru.students.StartupTeam.models.project.Project;
 import ru.students.StartupTeam.services.ProjectsService;
 
 @Controller
-@RequestMapping("/projects")
+@RequestMapping("")
 public class ProjectsController {
 
     private final ProjectsService projectsService;
@@ -20,7 +20,7 @@ public class ProjectsController {
         this.projectsService = projectsService;
     }
 
-    @GetMapping()
+    @GetMapping("")
     public String index(Model model){
         model.addAttribute("projects", projectsService.findAll());
         return "projects/index";

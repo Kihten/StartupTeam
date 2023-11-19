@@ -3,9 +3,10 @@ package ru.students.StartupTeam.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.students.StartupTeam.models.Project;
+import ru.students.StartupTeam.models.project.Project;
 import ru.students.StartupTeam.repositories.ProjectsRepository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class ProjectsService {
 
     @Transactional
     public void save(Project project){
-        project.setCreatedAt(new Date());
+        project.setCreatedAt(LocalDateTime.now());
         projectsRepository.save(project);
     }
 
@@ -42,7 +43,7 @@ public class ProjectsService {
 //        Project projectToBeUpdated = projectsRepository.findById(id).get();
 
         updatedProject.setId(id);
-        updatedProject.setCreatedAt(new Date());
+        updatedProject.setCreatedAt(LocalDateTime.now());
         projectsRepository.save(updatedProject);
     }
 
