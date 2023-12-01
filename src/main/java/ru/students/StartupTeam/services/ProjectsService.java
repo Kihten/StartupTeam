@@ -1,44 +1,39 @@
 package ru.students.StartupTeam.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.students.StartupTeam.models.project.Project;
 import ru.students.StartupTeam.repositories.ProjectsRepository;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ProjectsService {
 
     private final ProjectsRepository projectsRepository;
 
-    @Autowired
-    public ProjectsService(ProjectsRepository projectsRepository) {
-        this.projectsRepository = projectsRepository;
-    }
-
-    public List<Project> findAll(){
+    public List<Project> findAll() {
         return projectsRepository.findAll();
     }
 
-    public Project findOne(int id){
+    public Project findOne(int id) {
         Optional<Project> foundProject = projectsRepository.findById(id);
         return foundProject.orElse(null);
     }
 
     @Transactional
-    public void save(Project project){
+    public void save(Project project) {
         project.setCreatedAt(LocalDateTime.now());
         projectsRepository.save(project);
     }
 
     @Transactional
-    public void update(int id, Project updatedProject){
+    public void update(int id, Project updatedProject) {
         // Потом пригодится для установления связи с пользователем
 //        Project projectToBeUpdated = projectsRepository.findById(id).get();
 
@@ -48,7 +43,7 @@ public class ProjectsService {
     }
 
     @Transactional
-    public void delete(int id){
+    public void delete(int id) {
         projectsRepository.deleteById(id);
     }
 }

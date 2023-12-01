@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import ru.students.StartupTeam.models.Person;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
+@Data
 @Table(name = "Project")
 public class Project {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -32,60 +32,4 @@ public class Project {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Person author;
     // TODO: add skills to project
-
-    public Project() {
-    }
-
-    public Project(String projectName, String projectInfo) {
-        this.name = projectName;
-        this.projectInfo = projectInfo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProjectInfo() {
-        return projectInfo;
-    }
-
-    public void setProjectInfo(String projectInfo) {
-        this.projectInfo = projectInfo;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Person getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Person author) {
-        this.author = author;
-    }
 }

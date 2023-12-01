@@ -1,22 +1,23 @@
 package ru.students.StartupTeam.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.students.StartupTeam.models.Person;
 
 import java.util.Collection;
+import java.util.Collections;
 
-public class PersonDetails implements UserDetails {
+@RequiredArgsConstructor
+public class UserDetailsImpl implements UserDetails {
 
     private final Person person;
 
-    public PersonDetails(Person person) {
-        this.person = person;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        // TODO: returns roles (or authorities) for the user
+        return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));
     }
 
     @Override
