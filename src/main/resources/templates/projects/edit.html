@@ -7,9 +7,9 @@
 <body>
 
 <form th:method="PATCH" th:action="@{/projects/{id}(id=${project.getId()})}" th:object="${project}">
-    <label for="projectName">Введите название проекта</label>
-    <input type="text" th:field="*{projectName}" id="projectName"/>
-    <div style="color: red" th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}">Project name Error</div>
+    <label for="name">Введите название проекта</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Project name Error</div>
     <br/>
     <label for="projectInfo">Введите информацию о проекте</label>
     <input type="text" th:field="*{projectInfo}" id="projectInfo"/>
