@@ -31,7 +31,7 @@
     />
   </q-page>
 </template>
-
+ 
 <script>
 import { useCounterStore } from 'stores/example-store'
 import { mapActions, mapState } from 'pinia'
