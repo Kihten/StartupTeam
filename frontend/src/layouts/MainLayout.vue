@@ -1,21 +1,16 @@
-<template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="justify-between">
-      
-      
-        <q-toolbar>
-          <router-link to="/">
-          <q-icon
-            name="home"
-            size="lg"/>
-          </router-link>
-
-        <q-toolbar-title>
-          StudUp
-        </q-toolbar-title>
-
-        <div>StudUp v0.0.1-alpha</div>
-        <q-btn class="q-mx-sm" color="positive" label="Войти" @click="loginAction"/>
+<template >
+  <q-layout view="lHh Lpr lFf" >
+    <q-header elevated class="justify-between" style="background: #ffffff" >
+        <q-toolbar >
+           
+            <div class="col-12 col-md-8">
+              <q-img
+                style="width: 120px; margin-left: 60px"
+                :ratio="0"
+                src="https://raw.githubusercontent.com/Kihten/StartupTeam/main/frontend/public/icons/logo.png"
+              />
+            </div>
+        <q-btn  class="absolute-right" color="blue" label="Войти" @click="loginAction"/>
       </q-toolbar>
     </q-header>
     <q-page-container>

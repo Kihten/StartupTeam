@@ -1,6 +1,40 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page >
     <div class="q-gutter-md" v-if="!isLoading">
+      <div class="example-column-equal-width">
+        <div class="column" style="height: 280px">
+          <div class="col" style="background: #62BFAB">
+            <div class="text-left ">
+            Расширение
+            </div>
+            <div class="text-left ">
+            возможностей 
+            </div>
+            <div class="text-left ">
+            завтрашнего 
+            </div>
+            <div class="text-left ">
+            дня: 
+            </div>
+            <div class="text-left ">
+            объединение
+            </div>
+            <div class="text-left ">
+            студентов для
+            </div>
+            <div class="text-left ">
+            успеха 
+            </div>
+            <q-img 
+              src="https://raw.githubusercontent.com/Kihten/StartupTeam/main/frontend/public/icons/top.png"
+               style="height: 250px; max-width: 250px ; margin-left: 250px;
+        margin-right: 50px;  margin-top: -230px;  ">
+            </q-img>
+          </div>
+        </div>
+      </div>
+      <q-input dense outlined square v-model="search" placeholder="Поиск"  
+        style="width: 450px;  margin-left: 450px; background: #b2b9b8"  />
       <q-carousel
         v-model="slide"
         transition-prev="scale"
@@ -60,3 +94,16 @@ export default{
   }
 }
 </script>
+<style lang="sass">
+.example-column-equal-width
+  .column > div
+    padding: 30px 400px
+    background: #62BFAB
+    color: white
+    border: 10px
+    font-size: 20px
+    text-transform: uppercase
+    font-weight: bolder
+  .column + .column
+
+</style>
