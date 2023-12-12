@@ -1,10 +1,6 @@
 <template>
-  <q-dialog ref="dialogRef" @hide="onDialogHide">
+  <q-dialog ref="dialog" @hide="onDialogHide">
     <q-card class="q-dialog-plugin q-pa-xl">
-      <!--
-        ...content
-        ... use q-card-section for it?
-      -->
       <q-input outlined v-model="text" label="Логин" />
       <q-input v-model="password" filled :type="isPwd ? 'password' : 'text'" hint="Password with toggle">
         <template v-slot:append>
@@ -15,8 +11,7 @@
           />
         </template>
       </q-input>
-
-      <!-- buttons example -->
+      
       <q-card-actions align="right">
         <q-btn color="primary" label="Войти" @click="onOKClick" />
         <q-btn color="warning" label="Зарегистрироваться" @click="onDialogCancel" />

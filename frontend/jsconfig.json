@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    // включает более строгий вывод о свойствах данных в `this`
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
       "src/*": [
@@ -30,10 +36,13 @@
         "node_modules/vue/dist/vue.runtime.esm-bundler.js"
       ]
     }
+    
   },
   "exclude": [
     "dist",
     ".quasar",
     "node_modules"
   ]
+  
+  
 }

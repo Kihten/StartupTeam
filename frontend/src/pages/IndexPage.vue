@@ -1,33 +1,31 @@
 <template>
-  <q-page >
+  <q-page>
     <div class="q-gutter-md" v-if="!isLoading">
       <div class="example-column-equal-width">
         <div class="column" style="height: 280px">
           <div class="col" style="background: #62BFAB">
             <div class="text-left ">
-            Расширение
+              Расширение
             </div>
             <div class="text-left ">
-            возможностей 
+              возможностей
             </div>
             <div class="text-left ">
-            завтрашнего 
+              завтрашнего
             </div>
             <div class="text-left ">
-            дня: 
+              дня:
             </div>
             <div class="text-left ">
-            объединение
+              объединение
             </div>
             <div class="text-left ">
-            студентов для
+              студентов для
             </div>
             <div class="text-left ">
-            успеха 
+              успеха
             </div>
-            <q-img 
-              src="https://raw.githubusercontent.com/Kihten/StartupTeam/main/frontend/public/icons/top.png"
-               style="height: 250px; max-width: 250px ; margin-left: 250px;
+            <q-img src="https://raw.githubusercontent.com/Kihten/StartupTeam/main/frontend/public/icons/top.png" style="height: 250px; max-width: 250px ; margin-left: 250px;
         margin-right: 50px;  margin-top: -230px;  ">
             </q-img>
           </div>
@@ -39,36 +37,22 @@
           <q-icon name="search" />
         </template>
       </q-input>
-    
-      
-        <q-carousel
-        v-model="slide"
-        transition-prev="scale"
-        transition-next="scale"
-        swipeable
-        animated
-        control-color="black"
-        navigation
-        padding
-        arrows
-        height="250px"
-        class="text-black"
-      >
-        <q-carousel-slide style="background-color: #cee5de;" :name="index" class="no-wrap flex-center" v-for="(item, index) in projects" :key="index">
-          <div class="q-mt-md text-center col" >
-            <q-img :src="item.image" style="width:190px; height:190px;border-radius: 50%; left: -400px; margin-top: -10px;"></q-img>
-            <h6 style="margin-left: 300px; margin-top: -120px;">{{ item.description }} </h6>
-            <router-link style="margin-inline-start: 300px;" :to="`/project/${item.id}`">Подробнее</router-link>
+
+
+      <q-carousel v-model="slide" transition-prev="scale" transition-next="scale" swipeable animated control-color="black"
+        navigation padding arrows height="250px" class="text-black">
+        <q-carousel-slide style="background-color: #cee5de;" :name="index" class="no-wrap flex-center"
+          v-for="(item, index) in projects" :key="index">
+          <div class="q-mt-md text-center col">
+            <q-img :src="item.image"
+              style="width:190px; height:190px;border-radius: 50%; left: -400px; margin-top: -10px;"></q-img>
+            <h6 style="margin-left: 300px; margin-top: -150px;">{{ item.name }} </h6>
+            <router-link :to="`/project/${item.id}`">Подробнее</router-link>
           </div>
         </q-carousel-slide>
       </q-carousel>
     </div>
-    <q-inner-loading
-      :showing="isLoading"
-      label="Please wait..."
-      label-class="text-teal"
-      label-style="font-size: 1.1em"
-    />
+    <q-inner-loading :showing="isLoading" label="Please wait..." label-class="text-teal" label-style="font-size: 1.1em" />
   </q-page>
 
   <div style="columns: 4;  column-gap: 40px; margin-top: 40px; margin-left: 80px;">
@@ -93,8 +77,6 @@
     <p>tecno_omgtu@mail.ru</p>
 
   </div>
-
-
 </template>
  
 <script>
@@ -102,7 +84,7 @@ import { useCounterStore } from 'stores/example-store'
 import { mapActions, mapState } from 'pinia'
 import { ref } from 'vue'
 
-export default{
+export default {
   data() {
     return {
       name: 'IndexPage',
@@ -111,10 +93,10 @@ export default{
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
     }
   },
-  async beforeMount(){
-    this.isLoading=true;
+  async beforeMount() {
+    this.isLoading = true;
     await this.loadData();
-    this.isLoading=false;
+    this.isLoading = false;
 
   },
   methods: {
@@ -123,7 +105,7 @@ export default{
   computed: {
     ...mapState(useCounterStore, ['projects']),
   },
-  setup () {
+  setup() {
     return {
       search: ref('')
     }

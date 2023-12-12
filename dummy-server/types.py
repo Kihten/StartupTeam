@@ -4,7 +4,8 @@ from dataclasses import dataclass
 class Project:
     id: int
     name: str
-    description: str
+    target: str
+    tasks: str
     image: str
     author: str
 
