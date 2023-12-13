@@ -1,8 +1,10 @@
 <template>
-  <q-dialog ref="dialog" @hide="onDialogHide">
-    <q-card class="q-dialog-plugin q-pa-xl">
-      <q-input outlined v-model="text" label="Логин" />
-      <q-input v-model="password" filled :type="isPwd ? 'password' : 'text'" hint="Password with toggle">
+  <q-dialog ref="dialog" @hide="onDialogHide" >
+    <q-card style="border-radius: 15px;"  class="q-dialog-plugin q-pa-xl">
+      <q-img style="width: 120px; margin-left: 100px; margin-top: -20px" :ratio="0"
+            src="https://raw.githubusercontent.com/Kihten/StartupTeam/main/frontend/public/icons/logo.png" />
+      <q-input style="margin-top: 30px;" outlined v-model="text" label="Логин" />
+      <q-input style="margin-top: 30px;" v-model="password" label="Пароль" filled :type="isPwd ? 'password' : 'text'" hint="Восстановить">
         <template v-slot:append>
           <q-icon
             :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -11,16 +13,17 @@
           />
         </template>
       </q-input>
-      
-      <q-card-actions align="right">
-        <q-btn color="primary" label="Войти" @click="onOKClick" />
-        <q-btn color="warning" label="Зарегистрироваться" @click="onDialogCancel" />
+      <q-card-actions style="margin-top: 30px;" align="right">
+        <q-btn  :to="`/PersonPage`" color="teal-5" label="Войти"  />
+        <q-btn color="teal-5" label="Зарегистрироваться" @click="onDialogCancel" />
       </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
 
 <script>
+import PersonPage from 'src/pages/PersonPage.vue'
+
 export default {
   props: {
     // ...your custom props
