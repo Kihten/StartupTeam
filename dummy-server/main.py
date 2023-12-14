@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from .data import projects_list
+from .data import person_list
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -19,3 +20,7 @@ def projects():
 @app.route("/project/<int:id>")
 def project(id):
     return jsonify(next((x for x in projects_list if x.id == id), None))
+
+@app.route("/<int:id>")
+def Person(id):
+    return jsonify(next((x for x in person_list if x.id == id), None))

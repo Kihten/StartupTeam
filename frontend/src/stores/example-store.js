@@ -11,7 +11,7 @@ export const useCounterStore = defineStore('counter', {
     doubleCount: (state) => state.counter * 2,
   },
   actions: {
-    increment() {
+    increment() { 
       this.counter++;
     },
     async loadData(){

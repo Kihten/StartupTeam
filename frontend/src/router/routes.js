@@ -3,6 +3,9 @@ const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
+    meta: {
+      requiresAuth: true, allowedRoles: ['user', 'admin']
+    },
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'project/:id', component: () => import('pages/ProjectPage.vue') },

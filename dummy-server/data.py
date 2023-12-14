@@ -1,4 +1,5 @@
 from .types import Project
+from .types import Person
 
 projects_list = list()
 projects_list.append(Project(id=1, 
@@ -19,3 +20,35 @@ projects_list.append(Project(id=3,
                              tasks="-блаблаблаблаблабла; -блаблабалабала; -блабалабалбалабал; -блаблаблабалабалабла",
                              image='https://i.ytimg.com/vi/o5eCfta_IyQ/maxresdefault.jpg', 
                              author='Awesome 4e|\\'))
+
+person_list=list()
+person_list.append(Person(id=111,
+                          login="юра111",
+                            password="111юра",
+                            name="Юра",
+                            last_name="Кихтенко",
+                            university="ОмГТУ",
+                            faculti="ФИТиКС",
+                            group="ПИ-201",
+                            info="Всем привет! Я изучаю java и хочу развиваться в этом направлении. Много читаю, смотрю фильмы, люблю гулять и у меня есть классный котик!)",
+                            skills="Java, Java Spring, 1C, C++, Python, Arena, бизнес-процессы и многое другое"))
+person_list.append(Person(id=222,
+                          login="женя222",
+                            password="222женя",
+                            name="Евгений",
+                            last_name="Петров",
+                            university="ОмГТУ",
+                            faculti="ФИТиКС",
+                            group="ПИ-201",
+                            info="Всем привет! Я изучаю 1С и хочу развиваться в этом направлении. Люблю читать мангу, смотреть аниме и вообще люблю сидеть дома. Да, я интроверт и что вы мне сделаете?",
+                            skills="C#, Тестирование , 1C, C++, Python, Arena, бизнес-процессы и многое другое"))
+person_list.append(Person(id=333,
+                          login="инесса333",
+                            password="333инесса",
+                            name="Инесса",
+                            last_name="Трубина",
+                            university="ОмГТУ",
+                            faculti="ФИТиКС",
+                            group="ПИ-201",
+                            info="Всем привет! Я изучаю python и хочу развиваться в этом направлении. Я просто классная :) и люблю попугаев",
+                            skills="Vue3, JavaScript, C++, Python, Arena, бизнес-процессы и многое другое"))
