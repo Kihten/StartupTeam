@@ -9,3 +9,16 @@ class Project:
     image: str
     author: str
 
+
+@dataclass
+class Person:
+    id: int
+    login: int
+    password: int
+    name: str
+    last_name: str
+    university: str
+    faculti: str
+    group: str
+    info: str
+    skills: str
