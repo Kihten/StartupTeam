@@ -36,18 +36,6 @@ public class AuthenticationService {
         Map<String, Object> response = new HashMap<>();
         response.put("requestType", "Регистрация");
 
-//        if (request.getEmail() == null || request.getEmail().isEmpty()){
-//            response.put("success", false);
-//            response.put("message", "Адрес электронной почты не может быть пустым");
-//            return ResponseEntity.badRequest().body(response);
-//        }
-//
-//        if (request.getPassword() == null || request.getPassword().isEmpty()){
-//            response.put("success", false);
-//            response.put("message", "Пароль не может быть пустым");
-//            return ResponseEntity.badRequest().body(response);
-//        }
-
         Person person = convertToPerson(request);
 
         registrationValidator.validate(person, bindingResult);
@@ -67,7 +55,6 @@ public class AuthenticationService {
 
         response.put("success", true);
         response.put("message", "Пользователь зарегистрирован");
-        response.put("person", person);
         response.put("jwtToken", token);
         return ResponseEntity.ok(response);
     }
@@ -91,7 +78,6 @@ public class AuthenticationService {
 
         response.put("success", true);
         response.put("message", "Пользователь авторизован");
-        response.put("person", request.getEmail());
         response.put("jwtToken", token);
         return ResponseEntity.ok(response);
     }

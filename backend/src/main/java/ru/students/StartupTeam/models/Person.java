@@ -2,7 +2,6 @@ package ru.students.StartupTeam.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.Builder;
 import lombok.Data;
 import ru.students.StartupTeam.models.project.Project;
 
@@ -17,20 +16,23 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Size(min = 2, max = 50, message = "Имя должно быть в пределах от 2 до 50 символов")
     @Column(name = "first_name")
     private String firstName;
-    @Size(min = 2, max = 50, message = "Фамилия должна быть в пределах от 2 до 50 символов")
     @Column(name = "surname")
     private String surname;
     @Column(name = "email")
     private String email;
+    @Column(name = "avatar")
+    private String avatar;
     @Column(name = "password")
     private String password;
     @Column(name = "person_info")
     private String personInfo;
     @Column(name = "role")
     private String role;
+    @ManyToOne(targetEntity = Specialization.class)
+    @JoinColumn(name = "specialization_id")
+    private Specialization specialization;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Column(name = "updated_at")

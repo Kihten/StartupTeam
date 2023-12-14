@@ -18,12 +18,15 @@ public class Project {
     @Column(name = "id")
     private int id;
     @Column(name = "name")
-    @Size(min = 2, max = 100, message = "Имя проекта должно быть в пределах от 2 до 100 символов")
-    @NotNull(message = "Имя проекта должно быть заполнено")
-    @NotBlank(message = "Имя проекта должно быть заполнено")
     private String name;
+    @Column(name = "purpose")
+    private String purpose;
+    @Column(name = "task")
+    private String task;
     @Column(name = "project_info")
     private String projectInfo;
+    @Column(name = "image")
+    private String image;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Column(name = "updated_at")

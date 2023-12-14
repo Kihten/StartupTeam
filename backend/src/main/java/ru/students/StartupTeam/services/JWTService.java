@@ -5,38 +5,54 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import ru.students.StartupTeam.dto.PersonDTO;
+import ru.students.StartupTeam.repositories.PeopleRepository;
 
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class JWTService {
     @Value("${jwt.jwtSecret}")
     private String secret;
     @Value("${jwt.jwtExpirationMinutes}")
     private int jwtExpirationMinutes;
+    private final PeopleRepository peopleRepository;
+    private final PeopleService peopleService;
 
     public String generateJwtToken(String email) {
+        Date now = new Date();
         Date expirationDate = Date.from(ZonedDateTime.now().plusMinutes(jwtExpirationMinutes).toInstant());
 
         return JWT.create()
-                .withSubject("Person details")
-                .withClaim("email", email)
+                .withSubject(email)
                 .withIssuer("startup-team")
-                .withIssuedAt(new Date())
+                .withIssuedAt(now)
                 .withExpiresAt(expirationDate)
                 .sign(Algorithm.HMAC256(secret));
     }
 
-    public String validateTokenAndRetrieveClaim(String token) throws JWTVerificationException {
-        JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret))
-                .withSubject("Person details")
+    public Authentication validateToken(String token){
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        JWTVerifier verifier = JWT.require(algorithm)
                 .withIssuer("startup-team")
                 .build();
-
-        DecodedJWT jwt = verifier.verify(token);
-        return jwt.getClaim("email").asString();
+        DecodedJWT decodedJWT = verifier.verify(token);
+        PersonDTO personDTO = peopleService.convertToPersonDTO(peopleService.findByEmail(decodedJWT.getSubject()));
+        return new UsernamePasswordAuthenticationToken(personDTO, null, Collections.emptyList());
     }
+
+//    public String retrieveEmailFromToken(String token) throws JWTVerificationException {
+//
+//
+//        DecodedJWT jwt = verifier.verify(token);
+//        return jwt.getClaim("email").asString();
+//    }
 }

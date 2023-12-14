@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,35 +30,21 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain)
             throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
+        String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+        if (authHeader != null) {
+            String[] authElems = authHeader.split(" ");
 
-        String jwt = authHeader.substring(7);
-
-        if (jwt.isBlank()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT Token in Bearer Header");
-        } else {
-            try {
-                String personEmail = jwtService.validateTokenAndRetrieveClaim(jwt);
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(personEmail);
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails,
-                                null, //userDetails.getPassword(),
-                                userDetails.getAuthorities()
-                        );
-
-                if (SecurityContextHolder.getContext().getAuthentication() == null) {
-                    SecurityContextHolder.getContext().setAuthentication(authToken);
+            if (authElems.length == 2 && "Bearer".equals(authElems[0])){
+                try{
+                    SecurityContextHolder.getContext().setAuthentication(jwtService.validateToken(authElems[1]));
+                } catch (RuntimeException e){
+                    SecurityContextHolder.clearContext();
+                    throw e;
                 }
-            } catch (JWTVerificationException exception) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT Token");
             }
         }
+
         filterChain.doFilter(request, response);
     }
 }
