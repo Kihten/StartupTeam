@@ -1,7 +1,6 @@
 package ru.students.StartupTeam.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -15,6 +14,7 @@ import ru.students.StartupTeam.models.Person;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProjectDTO {
+    private int id;
     @Size(min = 2, max = 100, message = "Имя проекта должно быть в пределах от 2 до 100 символов")
     @NotNull(message = "Имя проекта должно быть заполнено")
     @NotBlank(message = "Имя проекта должно быть заполнено")
@@ -23,7 +23,5 @@ public class ProjectDTO {
     private String task;
     private String projectInfo;
     private String image;
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Person author;
 }

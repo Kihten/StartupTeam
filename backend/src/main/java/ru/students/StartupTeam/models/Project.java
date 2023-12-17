@@ -1,9 +1,6 @@
-package ru.students.StartupTeam.models.project;
+package ru.students.StartupTeam.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import ru.students.StartupTeam.models.Person;
 
@@ -31,7 +28,7 @@ public class Project {
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Person author;
     // TODO: add skills to project

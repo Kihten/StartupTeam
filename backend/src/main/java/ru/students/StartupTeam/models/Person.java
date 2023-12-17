@@ -1,9 +1,7 @@
 package ru.students.StartupTeam.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
-import ru.students.StartupTeam.models.project.Project;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -3,7 +3,6 @@ package ru.students.StartupTeam.services;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,10 +48,6 @@ public class JWTService {
         return new UsernamePasswordAuthenticationToken(personDTO, null, Collections.emptyList());
     }
 
-//    public String retrieveEmailFromToken(String token) throws JWTVerificationException {
-//
-//
-//        DecodedJWT jwt = verifier.verify(token);
-//        return jwt.getClaim("email").asString();
-//    }
+    //TODO: добавить возможность получать данные человека из JWT-токена
+
 }

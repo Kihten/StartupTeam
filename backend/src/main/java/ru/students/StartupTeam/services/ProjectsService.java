@@ -1,6 +1,5 @@
 package ru.students.StartupTeam.services;
 
-import com.auth0.jwt.JWT;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
@@ -11,10 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
-import ru.students.StartupTeam.config.JWTAuthenticationFilter;
 import ru.students.StartupTeam.dto.ProjectDTO;
-import ru.students.StartupTeam.models.Person;
-import ru.students.StartupTeam.models.project.Project;
+import ru.students.StartupTeam.models.Project;
 import ru.students.StartupTeam.repositories.PeopleRepository;
 import ru.students.StartupTeam.repositories.ProjectsRepository;
 
@@ -23,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
